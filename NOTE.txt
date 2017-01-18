@@ -8,26 +8,26 @@ oltp 및 nontrans의 경우 sysbench의 db 모드를 사용한 것이고, tpcc�
 
 -----
 1. oltp
-(1) /home/jisung/benchmark/sysbench 로 이동
+(1) /home/USER/benchmark/sysbench 로 이동
 (2) run_sysbench_db.sh 수행
 
 -----
 2. nontrans
-(1) /home/jisung/benchmark/sysbench 로 이동
+(1) /home/USER/benchmark/sysbench 로 이동
 (2) run_sysbench_nontrx.sh 수행
 
 -----
 3. tpcc
-(1) /home/jisung/benchmark/tpcc-mysql 로 이동
+(1) /home/USER/benchmark/tpcc-mysql 로 이동
 (2) run_tpcc.sh 수행
 
-만약 위의 mysql 기반 벤치 마크 수행 중 오류가 발생할 경우, 거의 대부분 mysql 설정에서 문제가 생긴거다. 일단 내 계정에서는 문제 없이 수행되는데, jisung 계정에서는 평가해 보지 못했다. 혹시나 문제가 있을 경우 알려주기 바란다.
+만약 위의 mysql 기반 벤치 마크 수행 중 오류가 발생할 경우, 거의 대부분 mysql 설정에서 문제가 생긴거다. 일단 내 계정에서는 문제 없이 수행되는데, USER 계정에서는 평가해 보지 못했다. 혹시나 문제가 있을 경우 알려주기 바란다.
 
 -----
 4. hadoop
 기본적인 수행 방법은 하둡 사용자 계정 로그인 후 하둡 서버를 수행하고 이후 각 벤치마크 수행, 하둡 서버 종료 하는 방식이다.
 
-(1) su hduser # 암호는 초기 jisung 계정 암호와 동일
+(1) su hduser # 암호는 초기 USER 계정 암호와 동일
 (2) /home/hduser 로 이동
 (3)./start_hadoop.sh # hadoop 실행
 (4) HiBench 벤치마크 수행 (아래 참고)
