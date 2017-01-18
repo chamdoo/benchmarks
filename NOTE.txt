@@ -1,0 +1,49 @@
+# benchmarks
+
+기본적으로 oltp, nontrans, tpcc는 MySQL 엔진을 쓰고 있는데, 스크립트에서 자동적으로 mysql을 초기화 시키도록 하고 있다. 수정해야하는 부분은 스크립트 파일의 대상 device를 /media/blueDBM에서 사용하는 장치로 이름을 변경하는 것이다.
+
+oltp 및 nontrans의 경우 sysbench의 db 모드를 사용한 것이고, tpcc는 tpcc 벤치마크 생성 프로그램을 이용한 것이다.
+
+기본적인 저장장치 크기는 2 GB로 설정되어 있는데, 이는 벤치마크 프로그램의 크기 (예를 들어 테이블 사이즈) 조절을 통해서 수정할 수 있다. 이는 sysbench의 파라미터와 tpcc 벤치마크 프로그램의 warehous 크기나 테이블 크기 등을 조정하여 변경할 수 있다.
+
+-----
+1. oltp
+(1) /home/jisung/benchmark/sysbench 로 이동
+(2) run_sysbench_db.sh 수행
+
+-----
+2. nontrans
+(1) /home/jisung/benchmark/sysbench 로 이동
+(2) run_sysbench_nontrx.sh 수행
+
+-----
+3. tpcc
+(1) /home/jisung/benchmark/tpcc-mysql 로 이동
+(2) run_tpcc.sh 수행
+
+만약 위의 mysql 기반 벤치 마크 수행 중 오류가 발생할 경우, 거의 대부분 mysql 설정에서 문제가 생긴거다. 일단 내 계정에서는 문제 없이 수행되는데, jisung 계정에서는 평가해 보지 못했다. 혹시나 문제가 있을 경우 알려주기 바란다.
+
+-----
+4. hadoop
+기본적인 수행 방법은 하둡 사용자 계정 로그인 후 하둡 서버를 수행하고 이후 각 벤치마크 수행, 하둡 서버 종료 하는 방식이다.
+
+(1) su hduser # 암호는 초기 jisung 계정 암호와 동일
+(2) /home/hduser 로 이동
+(3)./start_hadoop.sh # hadoop 실행
+(4) HiBench 벤치마크 수행 (아래 참고)
+(5) ./stop_hadoop.sh # hadoop 종료
+
+HiBench 벤치마크 수행 방법
+(1) TeraSort
+- ~/HiBench/terasort/bin 로 이동
+- prepare.sh 수행
+- run.sh 수행
+
+(2) DFSIOE
+- ~/HiBench/dfsioe/bin 로 이동
+- 읽기 평가의 경우: prepare-read.sh  -> run-read.sh 실행
+- 쓰기 평가의 경우: run-write.sh 수행
+
+(3) Wordcount
+- ~/HiBench/wordcount/bin 로 이동
+- prepare.sh -> run.sh 수행
